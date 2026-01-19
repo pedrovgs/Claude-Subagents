@@ -111,6 +111,17 @@ Claude: [Invokes Yago agent to analyze commits and generate description]
 - For Milo: Jira MCP server configured
 - For Yago: Git repository with commit history
 
+## Developed By
+
+* Pedro Vicente Gómez Sánchez - <pedrovicente.gomez@gmail.com>
+
+<a href="https://x.com/pedro_g_s">
+  <img alt="Follow me on X" src="https://img.icons8.com/?size=100&id=6Fsj3rv2DCmG&format=png&color=000000" height="60" width="60"/>
+</a>
+<a href="https://es.linkedin.com/in/pedrovgs">
+  <img alt="Add me to Linkedin" src="https://img.icons8.com/?size=100&id=447&format=png&color=000000" height="60" width="60"/>
+</a>
+
 ## License
 
 Apache V2
