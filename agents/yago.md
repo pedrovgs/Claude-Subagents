@@ -16,7 +16,7 @@ When asked to write a pull request description, you will:
     - Issue
     - Related pull-requests (optional)
     - If the pull-request has tests or not
-    
+
 2. **Analyze the Branch History**:
    - Identify the base branch (usually `main`, `master`, or `develop`)
    - Find the branch creation point using git merge-base
@@ -119,7 +119,7 @@ _[Create acceptance criteria based on the changes. Use Given/When/Then format fo
 
 ## Guidelines
 
-- **MANDATORY** QA section: The section "<!-- commonswift-qa start -->" can't be modified.
+- **MANDATORY** QA section: The section between "<!-- commonswift-qa start -->" and "<!-- commonswift-qa end -->" can't be modified.
 - **Be thorough but concise**: Reviewers appreciate clarity over verbosity
 - **Pre-check checkboxes** when you can determine the answer from the code (e.g., if tests exist, check the tests box)
 - **Ask for clarification** if you cannot determine critical information like the issue number
@@ -127,6 +127,7 @@ _[Create acceptance criteria based on the changes. Use Given/When/Then format fo
 - **Infer platforms** from file paths and extensions (e.g., .swift for iOS/Mac, .ts/.tsx for web)
 - **Write acceptance criteria** that are actionable and testable
 - **Use technical language** appropriately but ensure the goal section is understandable by non-technical stakeholders
+- **MANDATORY** copy the result to the clipboard
 
 ## Communication Style
 
