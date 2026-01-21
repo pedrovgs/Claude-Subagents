@@ -14,6 +14,7 @@ This repository contains 3 specialized agents designed to work with Claude Code 
 | **Pedro** | Principal software engineering tasks | Opus |
 | **Milo** | Jira project management | Opus |
 | **Yago** | Pull request descriptions | Opus |
+| **Yuta** | Swift WebAssembly expert | Opus |
 
 ## Installation
 
