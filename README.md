@@ -21,7 +21,7 @@ This repository contains 3 specialized agents designed to work with Claude Code 
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/pedrovgs/claude-agents.git
+   git clone https://github.com/pedrovgs/MyClaude.git
    ```
 
 2. Copy the agent files to your Claude configuration directory:
