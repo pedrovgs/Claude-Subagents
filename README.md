@@ -8,12 +8,14 @@ A collection of custom agents for [Claude Code](https://docs.anthropic.com/en/do
 
 ## Overview
 
-This repository contains 3 specialized agents designed to work with Claude Code CLI:
+This repository contains 6 specialized agents designed to work with Claude Code CLI:
 
 | Agent | Purpose | Model |
 |-------|---------|-------|
 | **Pedro** | Principal software engineering tasks | Opus |
 | **Milo** | Jira project management | Opus |
+| **Natalia** | Automated testing specialist | Opus |
+| **Raúl** | Software architecture and design | Opus |
 | **Yago** | Pull request descriptions | Opus |
 | **Yuta** | Swift WebAssembly expert | Opus |
 
@@ -84,6 +86,51 @@ User: Create an epic for the new dark mode feature
 Claude: [Invokes Milo agent to create epic with all required tasks]
 ```
 
+### Natalia - Test Engineer
+
+A testing specialist agent with deep expertise across testing frameworks including vitest, Swift Testing, XCTest, Cypress, and Playwright.
+
+**When to use:**
+- Writing unit, integration, end-to-end, or visual regression tests
+- Fixing flaky or broken tests
+- Designing test strategies and test architecture
+- Adding test coverage to new or existing features
+
+**Key principles:**
+- Sociable tests over solitary tests — real collaborators over mocks
+- Maximize the subject under test — test through public entry points
+- Never test implementation details — verify observable behavior only
+- Tests are documentation — clear names following Arrange-Act-Assert
+
+**Example:**
+```
+User: Write tests for the DocumentRenderer class
+Claude: [Invokes Natalia agent to write comprehensive behavioral tests]
+```
+
+### Raúl - Principal Software Architect
+
+A software architect agent with deep expertise in Clean Architecture, Hexagonal Architecture, Domain-Driven Design, and SOLID principles.
+
+**When to use:**
+- Architectural planning and system design decisions
+- Implementation design and technical plans
+- Refactoring strategies and migration planning
+- Structuring code with proper boundaries and contracts
+
+**Key principles:**
+- SOLID principles in every design decision
+- High cohesion, low coupling as the golden rule
+- All concrete implementations behind abstractions
+- Dependency injection for testability and flexibility
+- No duplication — search for existing components before creating new ones
+
+**Example:**
+```
+User: How should we structure the new notification system?
+Claude: [Invokes Raúl agent to design the architecture with proper boundaries]
+```
+
 ### Yago - PR Description Generator
 
 A communication-focused agent that analyzes git history and generates comprehensive pull request descriptions.
@@ -143,9 +190,11 @@ Claude: [Invokes Yuta agent to identify networking incompatibilities and suggest
 
 # Claude Code Custom Commands
 
-* **Rebase**: Rebases a list of branch one by one using the list of branches as a cascade.
-* **/analyse-code-dependencies**: Generates a HTML report using a package or module as input.
-* **/analyse-package-dependencies**: Generates a HTML report using a source file as input.
+* **/fix**: Fixes a bug using a strict Test-Driven Debugging workflow with specialized agents. Accepts a Jira ticket ID/URL or a bug description. Includes branch creation, failing test first, automated verification, and optional PR creation.
+* **/implement**: Implements a feature from a Jira ticket or description using a structured multi-agent engineering workflow. Covers architecture planning, implementation, automated testing, code review, quality validation, and coverage verification.
+* **/rebase**: Rebases a list of branches one by one using the list of branches as a cascade.
+* **/analyse-code-dependencies**: Generates an HTML report using a package or module as input.
+* **/analyse-package-dependencies**: Generates an HTML report using a source file as input.
 
 ## Requirements
 
