@@ -192,9 +192,22 @@ Claude: [Invokes Yuta agent to identify networking incompatibilities and suggest
 
 * **/fix**: Fixes a bug using a strict Test-Driven Debugging workflow with specialized agents. Accepts a Jira ticket ID/URL or a bug description. Includes branch creation, failing test first, automated verification, and optional PR creation.
 * **/implement**: Implements a feature from a Jira ticket or description using a structured multi-agent engineering workflow. Covers architecture planning, implementation, automated testing, code review, quality validation, and coverage verification.
+* **/tdd**: Implements a feature or Jira ticket using strict Test-Driven Development. Enforces red-green-refactor cycles coordinated by specialized agents (Raúl for architecture, Natalia for tests, Pedro for implementation, Yago for PR). Includes architecture design, strict one-test-at-a-time TDD, refactoring, code review, and optional PR creation.
 * **/rebase**: Rebases a list of branches one by one using the list of branches as a cascade.
 * **/analyse-code-dependencies**: Generates an HTML report using a package or module as input.
 * **/analyse-package-dependencies**: Generates an HTML report using a source file as input.
+
+## CLAUDE.md
+
+The `CLAUDE.md` file at the root of this repository contains project-level instructions automatically loaded by Claude Code at the start of every conversation. It defines:
+
+- **Developer info** and basic behavior preferences (concise communication)
+- **Subagent defaults** — Pedro is the default coding agent
+- **Testing policy** — always propose tests, prefer fast/deterministic, minimize mocking
+- **Constraints** — no inventing APIs, no large refactors unless requested, no logging secrets
+- **Git policy** — never commit/push without confirmation
+
+You can also place a personal `CLAUDE.md` at `~/.claude/CLAUDE.md` for global instructions across all projects.
 
 ## Requirements
 
