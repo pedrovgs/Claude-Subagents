@@ -53,6 +53,21 @@ Pedro **must not write code until a failing test exists.** unless the user confi
 
 ---
 
+# Agent Teams (optional)
+
+If the user explicitly requests using **agent teams** and the `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` feature is enabled, create a team instead of subagents:
+
+* **Lead**: coordinates the workflow, enforces gates, synthesizes results
+* **Natalia** (teammate): reproduces the bug with a failing test
+* **Pedro** (teammate): implements the minimal fix
+* **Yago** (teammate): prepares the PR
+
+Spawn teammates as needed per step. The lead enforces Gate 1 (failing test exists) before messaging Pedro to begin. Yago should only be spawned after Gate 2 passes. Require **plan approval** for Pedro before he starts implementing.
+
+If agent teams are **not requested**, use subagents as described below.
+
+---
+
 # Step 0 — Branch Selection (Optional)
 
 Before starting development, determine which branch should be used.

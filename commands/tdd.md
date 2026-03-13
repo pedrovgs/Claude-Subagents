@@ -23,6 +23,22 @@ This workflow enforces:
 
 ---
 
+# Agent Teams (optional)
+
+If the user explicitly requests using **agent teams** and the `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` feature is enabled, create a team instead of subagents:
+
+* **Lead**: coordinates the workflow, enforces TDD gates, manages red/green cycles
+* **Raúl** (teammate): architecture design, architecture review, code review
+* **Natalia** (teammate): writes one failing test per cycle
+* **Pedro** (teammate): implements minimal code to pass each test, refactoring
+* **Yago** (teammate): PR preparation
+
+Spawn Raúl first for architecture. During TDD cycles, the lead strictly enforces the red→green loop: message Natalia to write one test, wait for confirmation it fails, then message Pedro to make it pass. Teammates must **not** proceed out of order. Spawn Yago only after reviews pass. Require **plan approval** for Raúl's architecture plan.
+
+If agent teams are **not requested**, use subagents as described below.
+
+---
+
 # Input
 
 The command accepts:

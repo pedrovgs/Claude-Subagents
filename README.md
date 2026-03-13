@@ -190,12 +190,24 @@ Claude: [Invokes Yuta agent to identify networking incompatibilities and suggest
 
 # Claude Code Custom Commands
 
-* **/fix**: Fixes a bug using a strict Test-Driven Debugging workflow with specialized agents. Accepts a Jira ticket ID/URL or a bug description. Includes branch creation, failing test first, automated verification, and optional PR creation.
-* **/implement**: Implements a feature from a Jira ticket or description using a structured multi-agent engineering workflow. Covers architecture planning, implementation, automated testing, code review, quality validation, and coverage verification.
-* **/tdd**: Implements a feature or Jira ticket using strict Test-Driven Development. Enforces red-green-refactor cycles coordinated by specialized agents (Raúl for architecture, Natalia for tests, Pedro for implementation, Yago for PR). Includes architecture design, strict one-test-at-a-time TDD, refactoring, code review, and optional PR creation.
+* **/fix**: Fixes a bug using a strict Test-Driven Debugging workflow with specialized agents. Accepts a Jira ticket ID/URL or a bug description. Includes branch creation, failing test first, automated verification, and optional PR creation. Supports [agent teams](https://code.claude.com/docs/en/agent-teams) when enabled — spawns Natalia, Pedro, and Yago as teammates with the lead enforcing TDD gates.
+* **/implement**: Implements a feature from a Jira ticket or description using a structured multi-agent engineering workflow. Covers architecture planning, implementation, automated testing, code review, quality validation, and coverage verification. Supports [agent teams](https://code.claude.com/docs/en/agent-teams) when enabled — spawns Raúl, Pedro, Natalia, and Yago as teammates with parallel execution of implementation and testing.
+* **/tdd**: Implements a feature or Jira ticket using strict Test-Driven Development. Enforces red-green-refactor cycles coordinated by specialized agents (Raúl for architecture, Natalia for tests, Pedro for implementation, Yago for PR). Includes architecture design, strict one-test-at-a-time TDD, refactoring, code review, and optional PR creation. Supports [agent teams](https://code.claude.com/docs/en/agent-teams) when enabled — the lead strictly enforces red→green cycle ordering between Natalia and Pedro teammates.
 * **/rebase**: Rebases a list of branches one by one using the list of branches as a cascade.
 * **/analyse-code-dependencies**: Generates an HTML report using a package or module as input.
 * **/analyse-package-dependencies**: Generates an HTML report using a source file as input.
+
+## Agent Teams Support
+
+The `/fix`, `/implement`, and `/tdd` commands support [agent teams](https://code.claude.com/docs/en/agent-teams) — an experimental feature that coordinates multiple Claude Code instances working in parallel. When enabled, each named agent (Pedro, Natalia, Raúl, Yago) runs as an independent teammate with its own context window, coordinated by a lead session.
+
+When agent teams are not available, commands fall back to subagents automatically.
+
+| Command | Team Structure | Parallelism |
+|---------|---------------|-------------|
+| `/fix` | Lead + Natalia → Pedro → Yago | Sequential (TDD gates) |
+| `/implement` | Lead + Raúl → Pedro + Natalia → Yago | Pedro and Natalia run in parallel after architecture |
+| `/tdd` | Lead + Raúl → Natalia ↔ Pedro → Yago | Strict red→green cycles, lead enforces ordering |
 
 ## CLAUDE.md
 

@@ -18,6 +18,22 @@ This workflow simulates a real engineering team with specialized agents performi
 
 ---
 
+# Agent Teams (optional)
+
+If the user explicitly requests using **agent teams** and the `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` feature is enabled, create a team instead of subagents:
+
+* **Lead**: coordinates the workflow, enforces gates, manages task list
+* **Raúl** (teammate): architecture planning + code review
+* **Pedro** (teammate): implementation + refactoring
+* **Natalia** (teammate): automated tests + coverage validation
+* **Yago** (teammate): PR creation
+
+Spawn Raúl first for architecture. After plan approval, spawn Pedro and Natalia in parallel (Natalia can start writing tests from the architecture plan while Pedro implements). Spawn Yago only after the quality gate passes. Require **plan approval** for Raúl's architecture plan and Pedro's implementation approach.
+
+If agent teams are **not requested**, use subagents as described below.
+
+---
+
 # Input
 
 A **feature description or Jira ticket**.
