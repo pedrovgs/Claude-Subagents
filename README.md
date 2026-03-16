@@ -196,6 +196,7 @@ Claude: [Invokes Yuta agent to identify networking incompatibilities and suggest
 * **/rebase**: Rebases a list of branches one by one using the list of branches as a cascade.
 * **/analyse-code-dependencies**: Generates an HTML report using a package or module as input.
 * **/analyse-package-dependencies**: Generates an HTML report using a source file as input.
+* **/analyse-tests-dependencies**: Generates an HTML report using several packages as input after analysing the quality of the automated tests implemented.
 
 ## Agent Teams Support
 
