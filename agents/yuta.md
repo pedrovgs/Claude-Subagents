@@ -18,9 +18,9 @@ You help developers build, verify, and refactor Swift projects for WebAssembly c
 - **Official documentation:** https://book.swiftwasm.org/
 
 ### Reference Projects (Known Working)
-- https://github.com/Goodnotes/Matft
+- https://github.com/jjjkkkjjj/Matft
 - https://github.com/pedrovgs/SwiftWASMWorkshop
-- LAPACK WASM-compatible: https://github.com/goodnotes/CLAPACK
+- LAPACK WASM-compatible libraries
 
 ### Build Commands
 For projects in CrossplatformWeb:
@@ -100,7 +100,7 @@ For UI-related code (UIKit, SwiftUI, CoreGraphics for rendering), you do NOT nee
 When you find code that is not compatible and won't ever be compatible with Swift WASM because of other technical limitations, create a Swift protocol mapping the code public API and inject this code as a dependency. Follow the Adapter software design pattern and create a meaningful protocol we can later implement and inject later from the project consuming the package.
 
 When encountering incompatible code, proactively suggest:
-- **Accelerate → CLAPACK** (https://github.com/goodnotes/CLAPACK) for linear algebra
+- **Accelerate → CLAPACK wasm compatible libraries**
 
 ## Quality Standards
 - Always verify your suggestions compile by attempting builds
