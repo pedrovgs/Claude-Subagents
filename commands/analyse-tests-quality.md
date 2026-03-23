@@ -204,7 +204,7 @@ Populate `critical_uncovered_sections` with up to 10 entries:
 {
   "rank": 1,
   "file": "Sources/MyModule/CoreEngine.swift",
-  "absolute_path": "/Users/pedro/Development/Projects/GoodNotes-5/Packages/MyLib/Sources/MyModule/CoreEngine.swift",
+  "absolute_path": "/Users/pedro/Development/Projects/*",
   "line_start": 45,
   "line_end": 92,
   "symbol": "func processTransaction(_ tx: Transaction) -> Result<Receipt, Error>",
@@ -310,7 +310,34 @@ Wait for all subagents to complete. Parse the JSON block from each subagent's re
    - b) Abort the report generation entirely
 4. Only proceed to Step 3 after the user responds
 
-If all packages have `coverage.available == true`, proceed directly to Step 3.
+If all packages have `coverage.available == true`, proceed directly to Step 2b.
+
+### Step 2b: Merge cross-package coverage
+
+Packages that depend on each other may produce coverage for files outside their own source tree. For example, if package B depends on package A, running B's tests may also exercise code in A. This step merges those overlapping results so each file's coverage reflects the **best** (maximum) achieved across all packages.
+
+1. **Build a file coverage index**: Iterate over every package's `coverage.per_file` entries and group them by **absolute file path** (resolve relative paths using the package's `package_path` as base).
+2. **Detect overlaps**: A file appears in multiple packages when its resolved path matches across two or more `per_file` arrays.
+3. **Merge strategy — take the maximum per file**:
+   - For each file that appears in N packages, produce a single merged entry:
+     - `line_pct` = max(`line_pct`) across all appearances
+     - `function_pct` = max(`function_pct`) across all appearances
+     - `uncovered_lines` = min(`uncovered_lines`) across all appearances
+     - `loc` stays the same (it's a file property, not coverage-dependent)
+   - Keep track of which packages contributed coverage for each file (store as `covered_by: [pkg1, pkg2, ...]`).
+4. **Update each package's results**:
+   - For each package, replace `coverage.per_file` entries with the merged values for any overlapping files.
+   - Recalculate the package-level `coverage.line_pct` as the weighted average of all its `per_file` entries (weighted by `loc`).
+   - Recalculate `coverage.function_pct` similarly.
+   - Recalculate `coverage.zero_coverage_files` and `coverage.low_coverage_files` from the updated per-file data.
+5. **Log merged files**: Print a summary of how many files had cross-package coverage merged:
+   ```
+   Cross-package coverage merged:
+   - {file_path}: best coverage {line_pct}% (from {pkg_name}, also covered by {other_pkgs})
+   ```
+   Only print files where merging actually changed a value (i.e., the file appeared in multiple packages with different coverage).
+
+Proceed to Step 3 after merging.
 
 ### Step 3: Aggregate and generate HTML report
 
