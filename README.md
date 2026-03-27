@@ -197,6 +197,8 @@ Claude: [Invokes Yuta agent to identify networking incompatibilities and suggest
 * **/analyse-code-dependencies**: Generates an HTML report using a package or module as input.
 * **/analyse-package-dependencies**: Generates an HTML report using a source file as input.
 * **/analyse-tests-quality**: Generates an HTML report using several packages as input after analysing the quality of the automated tests implemented.
+* **/generate-mutations**: Generates build-validated code mutations for mutation testing. Accepts packages, output path, max mutations per package, and parallelism. Produces a JSON file with all validated mutations ready for evaluation.
+* **/evaluate-mutations**: Runs previously generated mutations against the test suite, classifies each as killed or survived, and produces a self-contained HTML report. Accepts the mutations JSON from `/generate-mutations` as input.
 
 ## Agent Teams Support
 
